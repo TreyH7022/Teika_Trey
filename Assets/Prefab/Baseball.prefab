@@ -14,7 +14,31 @@ PrefabInstance:
       objectReference: {fileID: -6989428181372028154, guid: 470a7045eb43043598a230dbb9e6e27c, type: 3}
     - target: {fileID: 1911200116200320219, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
       propertyPath: m_Name
-      value: Basketball Variant
+      value: Baseball
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317558914135406706, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+      propertyPath: m_Radius
+      value: 0.62059945
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317558914135406706, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.007976019
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771014588395246546, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.2199999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771014588395246546, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.2199999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346527370008646742, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346527370008646742, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 4346527370008646742, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56,8 +80,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2771014588395246546, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1911200116200320219, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4158399760927834607}
   m_SourcePrefab: {fileID: 100100000, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+--- !u!1 &1113001281082487144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1911200116200320219, guid: 7f3f6777695b0403aa5274c15157a4cc, type: 3}
+  m_PrefabInstance: {fileID: 1582978596941061555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &4158399760927834607
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113001281082487144}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.60999995
