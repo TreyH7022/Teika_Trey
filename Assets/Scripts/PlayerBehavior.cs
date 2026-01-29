@@ -5,6 +5,7 @@ public class TestBehavior : MonoBehaviour
 {
     public float speed;
     public GameObject ball;
+    private GameObject currentBall;
     public float yOff = -0.5f;
 
     void Start() {
@@ -13,19 +14,22 @@ public class TestBehavior : MonoBehaviour
 
     void Update() {
         
-        if(ball != null) {
+        if(currentBall != null) {
             Vector3 playerPos = transform.position;
             Vector3 ballOffset = new Vector3(0.0f,yOff,0.0f);
-            ball.transform.position = playerPos + ballOffset; 
+            currentBall.transform.position = playerPos + ballOffset; 
+        } else {
+            currentBall = Instantiate(ball, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
         }
 
         if(Keyboard.current.spaceKey.wasPressedThisFrame) {
-            Rigidbody2D body = ball.GetComponent<Rigidbody2D>();
+            Rigidbody2D body = currentBall.GetComponent<Rigidbody2D>();
             body.gravityScale = 1.0f;
 
-            Collider2D collider = ball.GetComponent<Collider2D>();
+            Collider2D collider = currentBall.GetComponent<Collider2D>();
             collider.enabled = true;
-            ball = null;
+
+            currentBall = null;
         }
 
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame) {
