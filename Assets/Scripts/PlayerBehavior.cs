@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class TestBehavior : MonoBehaviour
 {
     public float speed;
-    public GameObject ball;
+    public GameObject[] ball;
     private GameObject currentBall;
     public float yOff = -0.5f;
 
@@ -18,11 +18,12 @@ public class TestBehavior : MonoBehaviour
             Vector3 playerPos = transform.position;
             Vector3 ballOffset = new Vector3(0.0f,yOff,0.0f);
             currentBall.transform.position = playerPos + ballOffset; 
-        } else {
-            currentBall = Instantiate(ball, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+        } else if (ball.Length > 0) {
+            int index = Random.Range(0, ball.Length);
+            currentBall = Instantiate(ball[index], transform.position, Quaternion.identity);
         }
 
-        if(Keyboard.current.spaceKey.wasPressedThisFrame) {
+        if(Keyboard.current.spaceKey.wasPressedThisFrame && currentBall != null) {
             Rigidbody2D body = currentBall.GetComponent<Rigidbody2D>();
             body.gravityScale = 1.0f;
 
