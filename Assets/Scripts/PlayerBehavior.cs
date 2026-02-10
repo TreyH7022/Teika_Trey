@@ -7,9 +7,12 @@ public class TestBehavior : MonoBehaviour
     public GameObject[] ball;
     private GameObject currentBall;
     public float yOff = -0.5f;
+    float startTime = 0.0f;
+    public int move;
 
     void Start() {
-    
+        startTime = 0.0f;
+        move = 0; // 0 means you can move both ways
     }
 
     void Update() {
@@ -33,11 +36,17 @@ public class TestBehavior : MonoBehaviour
             currentBall = null;
         }
 
+     /*   float offset = 0.0f;
+        bool left = (Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) && move != 1;
+        if(left == true) {
+            offset = -speed;
+        } */
+
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame) {
             Vector3 newPos = transform.position;
             newPos.x = newPos.x - speed;
             transform.position = newPos;
-        }
+        } 
 
         if (Keyboard.current.rightArrowKey.wasPressedThisFrame) {
             Vector3 newPos = transform.position;
@@ -45,13 +54,10 @@ public class TestBehavior : MonoBehaviour
             transform.position = newPos;
         }
 
-        /*
-        if (Keyboard.current..isPressedThisFrame) {
-        Vector3 newPos = transform.position;
-        newPos.x = newPos.x + speed;
-        transform.position = newPos;
-
+        public void OnCollisionEnter2D(Collision2D other) {
+            if(other.GameObject.CompareTag("LB")) {
+                move = 1; // cannot move left
+            }
         }
-        */
     }
 }
