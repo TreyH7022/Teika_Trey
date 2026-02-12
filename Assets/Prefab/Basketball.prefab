@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 199071189902975558}
   - component: {fileID: 3695716154180579764}
   - component: {fileID: 2771014588395246546}
+  - component: {fileID: 4754566948603283018}
   m_Layer: 0
   m_Name: Basketball
   m_TagString: Ball
@@ -187,3 +188,16 @@ PolygonCollider2D:
       - {x: 0.75453395, y: -0.21025792}
       - {x: 0.7595411, y: 0.19517465}
   m_UseDelaunayMesh: 1
+--- !u!114 &4754566948603283018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911200116200320219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58087056915ec4593b6882bc9dfb771f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  timeout: 0

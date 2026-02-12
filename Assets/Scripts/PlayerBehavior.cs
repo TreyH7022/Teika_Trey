@@ -12,7 +12,7 @@ public class TestBehavior : MonoBehaviour
 
     void Start() {
         startTime = 0.0f;
-        move = 0; // 0 means you can move both ways
+        move = 0; // 0 = can move both ways
     }
 
     void Update() {
@@ -21,7 +21,8 @@ public class TestBehavior : MonoBehaviour
             Vector3 playerPos = transform.position;
             Vector3 ballOffset = new Vector3(0.0f,yOff,0.0f);
             currentBall.transform.position = playerPos + ballOffset; 
-        } else if (ball.Length > 0) {
+        } 
+        else if (ball.Length > 0) {
             int index = Random.Range(0, ball.Length);
             currentBall = Instantiate(ball[index], transform.position, Quaternion.identity);
         }
@@ -36,28 +37,36 @@ public class TestBehavior : MonoBehaviour
             currentBall = null;
         }
 
-     /*   float offset = 0.0f;
-        bool left = (Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) && move != 1;
-        if(left == true) {
-            offset = -speed;
-        } */
-
-        if (Keyboard.current.leftArrowKey.wasPressedThisFrame) {
+        if (Keyboard.current.leftArrowKey.isPressed && move != 1) {
             Vector3 newPos = transform.position;
-            newPos.x = newPos.x - speed;
+            newPos.x = newPos.x - speed * Time.deltaTime;
             transform.position = newPos;
         } 
 
-        if (Keyboard.current.rightArrowKey.wasPressedThisFrame) {
+        if (Keyboard.current.rightArrowKey.isPressed && move != 2) {
             Vector3 newPos = transform.position;
-            newPos.x = newPos.x + speed;
+            newPos.x = newPos.x + speed * Time.deltaTime;
             transform.position = newPos;
         }
+    }
 
-        public void OnCollisionEnter2D(Collision2D other) {
-            if(other.GameObject.CompareTag("LB")) {
-                move = 1; // cannot move left
-            }
+    public void OnCollisionEnter2D(Collision2D other) {
+
+        if(other.gameObject.CompareTag("LB")) {
+            move = 1; // cannot move left
+        }
+
+        if(other.gameObject.CompareTag("RB")) {
+            move = 2; // cannot move right
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D other) {
+
+        if(other.gameObject.CompareTag("LB") || 
+           other.gameObject.CompareTag("RB")) {
+
+            move = 0; // can move both ways again
         }
     }
 }
