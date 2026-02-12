@@ -16,7 +16,7 @@ public class TestBehavior : MonoBehaviour
     }
 
     void Update() {
-        
+
         if(currentBall != null) {
             Vector3 playerPos = transform.position;
             Vector3 ballOffset = new Vector3(0.0f,yOff,0.0f);
@@ -41,7 +41,7 @@ public class TestBehavior : MonoBehaviour
             Vector3 newPos = transform.position;
             newPos.x = newPos.x - speed * Time.deltaTime;
             transform.position = newPos;
-        } 
+        }
 
         if (Keyboard.current.rightArrowKey.isPressed && move != 2) {
             Vector3 newPos = transform.position;
