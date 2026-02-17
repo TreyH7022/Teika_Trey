@@ -33,8 +33,6 @@ public class BorderBehaviour : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Ball")) {
-            timeStart = 0.0f;
-        }
+     
     }
 }
