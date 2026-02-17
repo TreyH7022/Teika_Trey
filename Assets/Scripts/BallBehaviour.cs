@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    // public float timeout;
-    // private float timeStart;
 
+    public float timeThusFar;
 
-    // void Start() {
-        
-    // }
+    public GameObject[] ball;
+    public int ballType;
 
-    // void Update() {
+    void Start() {
+        ball = GameObject.FindGameObjectWithTag("Player").GetComponent<TestBehavior>().ball;
+    }
+
+    void Update() {
         
     // }
 
@@ -36,5 +38,28 @@ public class NewMonoBehaviourScript : MonoBehaviour
     //     if (other.gameObject.CompareTag("Top")) {
     //         timeStart = 0.0f;
     //     }
-    // }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Ball")) {
+            int otherType = other.gameObject.GetComponent<NewMonoBehaviourScript>().ballType;
+            if (otherType == ballType && ballType < ball.Length-1) {
+                if (gameObject.transform.position.x < other.transform.position.x 
+                    || (gameObject.transform.position.x == other.transform.position.x 
+                        && gameObject.transform.position.y >= other.transform.position.y)) {
+                    
+                    // Create the merged one
+                    int index = ballType + 1;
+                    GameObject currentBall = Instantiate(ball[index], Vector3.Lerp(gameObject.transform.position,
+                        other.gameObject.transform.position, 0.5f), Quaternion.identity);
+                    currentBall.GetComponent<Collider2D>().enabled = true;
+                    currentBall.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+
+                    // destroy both things
+                    Destroy(other.gameObject);
+                    Destroy(gameObject);
+                }
+            }
+        }
+    }
 }
