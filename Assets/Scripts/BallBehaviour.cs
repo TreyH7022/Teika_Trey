@@ -54,7 +54,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
                         other.gameObject.transform.position, 0.5f), Quaternion.identity);
                     currentBall.GetComponent<Collider2D>().enabled = true;
                     currentBall.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
-                    
+
+                    GetComponent<AudioSource>().Play();
+
                     GameObject.FindGameObjectWithTag("Player").GetComponent<TestBehavior>().updateScore(ballType);
 
                     // destroy both things
