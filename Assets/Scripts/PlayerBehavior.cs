@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class TestBehavior : MonoBehaviour
 {
@@ -10,9 +11,14 @@ public class TestBehavior : MonoBehaviour
     float startTime = 0.0f;
     public int move;
 
+    public int[] points;
+    public int total;
+    public TMP_Text textField;
+
     void Start() {
         startTime = 0.0f;
         move = 0; // 0 = can move both ways
+        total = 0;
     }
 
     void Update() {
@@ -68,5 +74,10 @@ public class TestBehavior : MonoBehaviour
 
             move = 0; // can move both ways again
         }
+    }
+
+    public void updateScore(int index) {
+        total = total + points[index];
+        textField.SetText("Score: " + total);
     }
 }

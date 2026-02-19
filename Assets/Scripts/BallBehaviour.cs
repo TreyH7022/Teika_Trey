@@ -54,6 +54,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
                         other.gameObject.transform.position, 0.5f), Quaternion.identity);
                     currentBall.GetComponent<Collider2D>().enabled = true;
                     currentBall.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+                    
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<TestBehavior>().updateScore(ballType);
 
                     // destroy both things
                     Destroy(other.gameObject);
@@ -63,3 +65,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 }
+
+/*
+points when merged
+Tennis Ball 1
+8 ball 3
+baseball 5
+Puck 8
+Basketball 10
+Soccer Ball 15
+Football 25
+Bowling ball 50
+*/
