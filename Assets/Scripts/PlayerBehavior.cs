@@ -15,10 +15,14 @@ public class TestBehavior : MonoBehaviour
     public int total;
     public TMP_Text textField;
 
+    // private QueueManager queue;
+
     void Start() {
         startTime = 0.0f;
         move = 0; // 0 = can move both ways
         total = 0;
+
+        // queue = GameObject.FindGameObjectWithTag("Queue").GetComponent<QueueManager>();
     }
 
     void Update() {
