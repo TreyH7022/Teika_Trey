@@ -10,19 +10,18 @@ public class TestBehavior : MonoBehaviour
     public float yOff = -0.5f;
     float startTime = 0.0f;
     public int move;
+    public QueueManager queueManager;
+    public bool isHeld = true;
 
     public int[] points;
     public int total;
     public TMP_Text textField;
-
-    // private QueueManager queue;
 
     void Start() {
         startTime = 0.0f;
         move = 0; // 0 = can move both ways
         total = 0;
 
-        // queue = GameObject.FindGameObjectWithTag("Queue").GetComponent<QueueManager>();
     }
 
     void Update() {
@@ -32,10 +31,23 @@ public class TestBehavior : MonoBehaviour
             Vector3 ballOffset = new Vector3(0.0f,yOff,0.0f);
             currentBall.transform.position = playerPos + ballOffset; 
         } 
+        else if (queueManager != null) {
+            GameObject nextBall = queueManager.GetNextBall();
+            currentBall = Instantiate(nextBall, transform.position, Quaternion.identity);
+
+            // Turn OFF physics while it's being held
+            Rigidbody2D body = currentBall.GetComponent<Rigidbody2D>();
+            body.gravityScale = 0.0f;
+
+            Collider2D collider = currentBall.GetComponent<Collider2D>();
+            collider.enabled = false;
+        }
+        /*
         else if (ball.Length > 0) {
             int index = Random.Range(0, ball.Length);
             currentBall = Instantiate(ball[index], transform.position, Quaternion.identity);
         }
+        */
 
         if(Keyboard.current.spaceKey.wasPressedThisFrame && currentBall != null) {
             Rigidbody2D body = currentBall.GetComponent<Rigidbody2D>();
@@ -43,6 +55,9 @@ public class TestBehavior : MonoBehaviour
 
             Collider2D collider = currentBall.GetComponent<Collider2D>();
             collider.enabled = true;
+
+            NewMonoBehaviourScript ballScript = currentBall.GetComponent<NewMonoBehaviourScript>();
+            ballScript.isHeld = false;
 
             currentBall = null;
         }
@@ -61,6 +76,8 @@ public class TestBehavior : MonoBehaviour
     }
 
     public void OnCollisionEnter2D(Collision2D other) {
+
+        if (isHeld) return;
 
         if(other.gameObject.CompareTag("LB")) {
             move = 1; // cannot move left
@@ -84,4 +101,6 @@ public class TestBehavior : MonoBehaviour
         total = total + points[index];
         textField.SetText("Score: " + total);
     }
+
+
 }

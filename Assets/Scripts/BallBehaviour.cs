@@ -4,6 +4,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
 
     public float timeThusFar;
+    public bool isHeld = true;
+
 
     public GameObject[] ball;
     public int ballType;
