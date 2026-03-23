@@ -1,31 +1,34 @@
 using UnityEngine;
 
-public class BackgroundManager : MonoBehaviour
+public class DiagonalBackground : MonoBehaviour
 {
-    public GameObject bckPrefab;
-    public float speed;
-    private GameObject[] bcks;
-    public float pivotPoint;
+    public float speedX = 1f; 
+    public float speedY = 1f; 
+    public Vector2 resetPosition; 
+    public Vector2 startPosition; 
 
+    private Vector2 size; 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        bcks = new GameObject[3];
+        transform.position = startPosition;
 
-        for (int i = 0; i < 0; i++) {
-            float xPos = pivotPoint - (pivotPoint/2 * i);
-            float yPos = pivotPoint - (pivotPoint/2 * i);
-
-            Vector2 pos = new Vector2(0.0f, 0.0f);
-            bcks[i] = Instantiate(bckPrefab, pos, Quaternion.identity);
-
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            size = sr.bounds.size;
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Move diagonally
+        transform.Translate(new Vector3(speedX, speedY, 0) * Time.deltaTime);
+
+        // Resets if it goes to far
+        if (transform.position.x > resetPosition.x || transform.position.y > resetPosition.y)
+        {
+            transform.position = startPosition;
+        }
     }
 }
