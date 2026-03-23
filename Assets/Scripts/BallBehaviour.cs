@@ -23,12 +23,23 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Ball")) {
             int otherType = other.gameObject.GetComponent<NewMonoBehaviourScript>().ballType;
-            if (otherType == ballType && ballType < ball.Length-1) {
+            if (otherType == ballType) {
                 if (gameObject.transform.position.x < other.transform.position.x 
                     || (gameObject.transform.position.x == other.transform.position.x 
                         && gameObject.transform.position.y >= other.transform.position.y)) {
                     
-                    int index = ballType + 1;
+                    int index;
+
+                    if (ballType == ball.Length - 1)
+                    {
+                        // If it's the biggest ball, go back to smallest
+                        index = 0;
+                    }
+                    else
+                    {
+                        // Otherwise go to next size up
+                        index = ballType + 1;
+                    }
 
                     Vector3 spawnPos = Vector3.Lerp( gameObject.transform.position,
                         other.gameObject.transform.position, 0.5f);
