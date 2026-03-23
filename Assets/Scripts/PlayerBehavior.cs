@@ -8,17 +8,16 @@ public class TestBehavior : MonoBehaviour
     public GameObject[] ball;
     private GameObject currentBall;
     public float yOff = -0.5f;
-    float startTime = 0.0f;
     public int move;
     public QueueManager queueManager;
-    public bool isHeld = true;
+    public AudioSource audioSource;
+    public AudioClip dropSound;
 
     public int[] points;
     public int total;
     public TMP_Text textField;
 
     void Start() {
-        startTime = 0.0f;
         move = 0; // 0 = can move both ways
         total = 0;
 
@@ -50,6 +49,9 @@ public class TestBehavior : MonoBehaviour
         */
 
         if(Keyboard.current.spaceKey.wasPressedThisFrame && currentBall != null) {
+            
+            audioSource.PlayOneShot(dropSound);
+
             Rigidbody2D body = currentBall.GetComponent<Rigidbody2D>();
             body.gravityScale = 1.0f;
 
@@ -77,7 +79,7 @@ public class TestBehavior : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other) {
 
-        if (isHeld) return;
+      //  if (isHeld) return;
 
         if(other.gameObject.CompareTag("LB")) {
             move = 1; // cannot move left
@@ -101,6 +103,4 @@ public class TestBehavior : MonoBehaviour
         total = total + points[index];
         textField.SetText("Score: " + total);
     }
-
-
 }
